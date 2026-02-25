@@ -785,12 +785,8 @@ GameObject:
   m_Component:
   - component: {fileID: 530081029}
   - component: {fileID: 530081028}
-  - component: {fileID: 530081027}
-  - component: {fileID: 530081026}
-  - component: {fileID: 530081031}
-  - component: {fileID: 530081030}
-  - component: {fileID: 530081032}
   - component: {fileID: 530081033}
+  - component: {fileID: 530081034}
   m_Layer: 0
   m_Name: BasicGrem
   m_TagString: Untagged
@@ -798,35 +794,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &530081026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530081025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6326c612daf4ed8469a34d036e2b835d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseTime: 2
---- !u!114 &530081027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530081025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bed9d22d0550d9243b9ec84bf5507db4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: df0f92627854a8149b8d9980d086be18, type: 2}
-  currentBehavior: {fileID: 0}
-  activeAbilities: []
-  hunger: 1
 --- !u!212 &530081028
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -897,46 +864,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &530081030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530081025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 770027fad0c750b48b0fe5664b0af842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectRadius: 10
-  foodConsumptionTime: 1
-  postEatWaitTime: 1.5
---- !u!114 &530081031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530081025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0e12daeed05f5c41a3b81dd1101b26a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sleepDuration: 5
---- !u!114 &530081032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530081025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 146b7b0621e00b4498f025532a1bdc49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &530081033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -983,6 +910,23 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.6, y: 0.6}
   m_EdgeRadius: 0
+--- !u!114 &530081034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530081025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df410828e6615f544b8d14989c201163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: df0f92627854a8149b8d9980d086be18, type: 2}
+  hunger: 1
+  energy: 1
+  isSleeping: 0
+  targetFood: {fileID: 0}
 --- !u!1 &735692350
 GameObject:
   m_ObjectHideFlags: 0

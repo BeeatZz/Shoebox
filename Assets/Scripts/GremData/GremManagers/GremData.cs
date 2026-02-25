@@ -18,4 +18,8 @@ public class GremData : ScriptableObject
     [Header("Vitals")]
     public float hungerDepletionRate = 0.05f;
     public float hungerThreshold = 0.3f;
+
+    [Header("Energy")]
+    public float energyDepletionRate = 0.02f;
+    public float energyThreshold = 0.2f;
 }
