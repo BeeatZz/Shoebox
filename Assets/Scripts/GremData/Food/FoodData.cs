@@ -10,4 +10,3 @@ public class FoodData : ScriptableObject
     public FoodEffect specialEffect = FoodEffect.None;
     public float effectDuration = 5f;
 }
-

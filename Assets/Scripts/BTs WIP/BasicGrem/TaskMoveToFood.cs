@@ -7,7 +7,11 @@ public class TaskMoveToFood : Node
 
     public override NodeState Evaluate()
     {
-        if (agent.targetFood == null) return NodeState.Failure;
+        if (agent.targetFood == null)
+        {
+            agent.ResetSpriteScale();
+            return NodeState.Failure;
+        }
 
         Vector3 destination = new Vector3(agent.targetFood.position.x, agent.transform.position.y, agent.targetFood.position.z);
         float currentSpeed = agent.stats.moveSpeed;
@@ -22,6 +26,17 @@ public class TaskMoveToFood : Node
             destination,
             currentSpeed * Time.deltaTime
         );
-        return Vector3.Distance(agent.transform.position, destination) < 0.2f ? NodeState.Success : NodeState.Running;
+        
+        agent.FlipSpriteToTarget(destination);
+
+        agent.ApplySquashAndSquishEffect(Time.time, agent.stats.squashAmount, agent.stats.squashSpeed);
+
+        if (Vector3.Distance(agent.transform.position, destination) < 0.2f)
+        {
+            agent.ResetSpriteScale();
+            return NodeState.Success;
+        }
+
+        return NodeState.Running;
     }
 }

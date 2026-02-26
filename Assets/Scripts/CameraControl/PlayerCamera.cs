@@ -23,7 +23,6 @@ public class PlayerCamera : MonoBehaviour
     {
         camTransform = GetComponentInChildren<Camera>().transform;
 
-        // Initialize targets to current values
         targetZoom = -camTransform.localPosition.z;
         currentZoom = targetZoom;
         targetRotationY = transform.eulerAngles.y;
@@ -32,7 +31,6 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
-        // 1. Handle Input
         if (Mouse.current.rightButton.isPressed)
         {
             Vector2 mouseDelta = Mouse.current.delta.ReadValue();
@@ -47,16 +45,12 @@ public class PlayerCamera : MonoBehaviour
             targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
         }
 
-        // 2. Apply Smoothing (Lerp)
         currentRotationY = Mathf.LerpAngle(currentRotationY, targetRotationY, Time.deltaTime * rotationSmoothing);
         currentZoom = Mathf.Lerp(currentZoom, targetZoom, Time.deltaTime * zoomSmoothing);
 
-        // 3. Apply Transformations
         transform.rotation = Quaternion.Euler(0, currentRotationY, 0);
         camTransform.localPosition = new Vector3(camTransform.localPosition.x, camTransform.localPosition.y, -currentZoom);
 
-        // 4. Stay Focused on Pivot
-        // This ensures the camera always tilts to look at the center of the box
         camTransform.LookAt(transform.position);
     }
 }

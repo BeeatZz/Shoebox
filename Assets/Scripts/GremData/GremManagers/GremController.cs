@@ -41,10 +41,10 @@ public class GremController : MonoBehaviour
 
     void Update()
     {
-        HandleInput();
+        hunger = Mathf.Clamp01(hunger - stats.hungerDepletionRate * Time.deltaTime);
 
-        hunger -= stats.hungerDepletionRate * Time.deltaTime;
-        hunger = Mathf.Clamp01(hunger);
+        //if (!isSleeping)
+           // energy = Mathf.Clamp01(energy - stats.energyDepletionRate * Time.deltaTime);
 
         if (currentBehavior != null)
         {
@@ -58,28 +58,6 @@ public class GremController : MonoBehaviour
         }
     }
 
-    private void HandleInput()
-    {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            Vector2 mousePos = Mouse.current.position.ReadValue();
-            Ray ray = mainCam.ScreenPointToRay(mousePos);
-            RaycastHit[] hits = Physics.RaycastAll(ray, 100f);
-
-            foreach (var hit in hits)
-            {
-                if (hit.collider.gameObject == gameObject || hit.collider.transform.IsChildOf(transform))
-                {
-                    DraggedBehavior drag = GetComponent<DraggedBehavior>();
-                    if (drag != null)
-                    {
-                        ChangeBehavior(drag);
-                        break;
-                    }
-                }
-            }
-        }
-    }
 
     void LateUpdate()
     {

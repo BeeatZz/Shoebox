@@ -1,0 +1,9 @@
+The "Feeding System" has been integrated directly into the existing "InputManagerHook" script to simplify setup.
+
+Please perform the following steps in the Unity Editor to enable feeding:
+
+1.  Locate the "InputManagerHook" component in your scene (usually on an object named "Managers", "InputManager", or "System").
+2.  In the Inspector, verify that the "Food Prefab" field is visible.
+3.  Assign the "Marshmallow" prefab (located in Assets/Prefabs/Marshmallow.prefab) to this field.
+4.  Set the "Floor Layer" mask to include the layer your floor is on (e.g., "Default" or "Floor").
+5.  Play the game, press 'F' to enable feeding mode, and click on the floor to spawn food!

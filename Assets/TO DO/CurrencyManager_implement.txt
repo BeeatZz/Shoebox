@@ -1,0 +1,15 @@
+To ensure the Currency Manager is functioning correctly and currency is being produced:
+
+1.  **Create CurrencyManager GameObject:**
+    *   In the Unity Editor, go to your scene Hierarchy.
+    *   Right-click -> Create Empty.
+    *   Rename this new GameObject to `CurrencyManager`.
+
+2.  **Attach `CurrencyManager.cs` Script:**
+    *   Drag and drop the `Assets/Scripts/Managers/CurrencyManager.cs` script onto the `CurrencyManager` GameObject in the Inspector.
+
+This step is crucial because `CurrencyManager` is a MonoBehaviour Singleton, meaning it needs to be attached to an active GameObject in the scene for its `Instance` to be correctly initialized and accessible by other scripts (like `TaskProduceCurrency`).
+
+After performing these steps, run the scene and verify:
+*   Currency is being produced (check the console for `Current Currency` logs).
+*   Grems are moving and flipping their sprites.

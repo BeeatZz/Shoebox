@@ -5,7 +5,6 @@ public class TaskWander : Node
     private GremBT agent;
     private Vector3 targetPos;
     private bool hasTarget;
-    private bool reachedDestination; 
     
     public TaskWander(GremBT agent) { this.agent = agent; }
 
@@ -31,10 +30,15 @@ public class TaskWander : Node
             targetPos,
             currentSpeed * Time.deltaTime
         );
+        
+        agent.FlipSpriteToTarget(targetPos);
+
+        agent.ApplySquashAndSquishEffect(Time.time, agent.stats.squashAmount, agent.stats.squashSpeed);
 
         if (Vector3.Distance(agent.transform.position, targetPos) < 0.15f)
         {
-            hasTarget = false; 
+            hasTarget = false;
+            agent.ResetSpriteScale();
             return NodeState.Success;
         }
 
@@ -44,6 +48,6 @@ public class TaskWander : Node
     public void ResetTask()
     {
         hasTarget = false;
-        reachedDestination = false;
+        agent.ResetSpriteScale();
     }
 }

@@ -1,0 +1,81 @@
+To implement the furniture placement system, follow these steps:
+
+**Part 1: Basic Setup in Unity Editor**
+
+1.  **Create TO DO Folder (if not already existing):**
+    *   In the Unity Editor, navigate to your `Assets` folder.
+    *   Right-click -> Create -> Folder, and name it `TO DO`. (This is where this instruction file should reside).
+
+2.  **Create Furniture Prefabs:**
+    *   For each piece of furniture you want to place, create a 3D object in your scene (e.g., a Cube, or import your own model).
+    *   Give it a descriptive name (e.g., "ChairPrefab", "TablePrefab").
+    *   Ensure it has a Collider component (e.g., Box Collider for a cube, Mesh Collider for imported models). This is important if you want Grem's to interact with it later, but not strictly necessary for placement.
+    *   Drag this GameObject from the Hierarchy into your `Assets/Prefabs` folder to create a prefab. Delete the instance from the scene.
+    *   Repeat for all desired furniture items.
+
+3.  **Setup the Floor Layer:**
+    *   Select your floor GameObject(s) in the scene.
+    *   In the Inspector, next to the `Layer` dropdown, click `Add Layer...`.
+    *   Create a new User Layer (e.g., `Floor`).
+    *   Assign this new layer to your floor GameObject(s).
+
+4.  **Create the Furniture Placement Manager GameObject:**
+    *   In your scene, create an empty GameObject (Right-click in Hierarchy -> Create Empty).
+    *   Rename it to `FurniturePlacementManager`.
+    *   Drag and drop the `Assets/Scripts/FurniturePlacementManager.cs` script onto this new GameObject in the Inspector.
+
+5.  **Configure `FurniturePlacementManager` Component:**
+    *   Select the `FurniturePlacementManager` GameObject in the Hierarchy.
+    *   In the Inspector, for the `FurniturePlacementManager` script component:
+        *   **Floor Layer**: Select the `Floor` layer you created from the dropdown.
+        *   **Furniture Prefabs**: Increase the `Size` of the array. Drag your furniture prefabs (e.g., "ChairPrefab", "TablePrefab") from your `Assets/Prefabs` folder into the respective slots in this array.
+
+**Part 2: UI Setup (Optional for basic testing, but required for full functionality)**
+
+The `FurniturePlacementManager` script currently uses the 'B' key to "toggle" a non-existent menu, and expects calls to `SelectFurniturePrefab(index)`. To make this user-friendly, you'll need a basic UI:
+
+1.  **Create a UI Canvas:**
+    *   Right-click in Hierarchy -> UI -> Canvas.
+    *   Set its Render Mode to `Screen Space - Camera` and assign your `Main Camera` (or `PlayerCamera`) to the `Render Camera` slot.
+    *   Set the UI Scale Mode to `Scale With Screen Size` and a suitable reference resolution (e.g., 1920x1080).
+
+2.  **Create a UI Panel for the Menu:**
+    *   Right-click on the `Canvas` -> UI -> Panel. Rename it `FurnitureMenuPanel`.
+    *   Initially, disable this panel so it's not visible (`GameObject.SetActive(false)` in its Inspector).
+
+3.  **Add Buttons for Each Furniture Item:**
+    *   For each furniture prefab you added to `FurniturePlacementManager.cs`:
+        *   Right-click on `FurnitureMenuPanel` -> UI -> Button - TextMeshPro (if using TMP).
+        *   Rename the button (e.g., "ChairButton", "TableButton").
+        *   Change the button's text to "Chair", "Table", etc.
+        *   In the Button component's Inspector, find the `OnClick()` event list.
+        *   Click the `+` button to add a new event.
+        *   Drag your `FurniturePlacementManager` GameObject from the Hierarchy into the `Runtime Only` slot.
+        *   From the dropdown that appears, select `FurniturePlacementManager` -> `SelectFurniturePrefab(int)`.
+        *   In the integer input box, enter the **array index** of that prefab in your `FurniturePlacementManager`'s `FurniturePrefabs` array (e.g., `0` for the first item, `1` for the second, etc.).
+
+4.  **Implement 'B' Key to Toggle Menu:**
+    *   Modify `FurniturePlacementManager.cs` further to integrate the actual UI menu:
+        *   Add a `public GameObject furnitureMenuPanel;` reference to the `FurniturePlacementManager` script.
+        *   In the Inspector, drag your `FurnitureMenuPanel` GameObject to this slot.
+        *   Modify the `HandleInput()` method:
+            ```csharp
+            if (Keyboard.current.bKey.wasPressedThisFrame)
+            {
+                if (isPlacing)
+                {
+                    CancelPlacement();
+                }
+                furnitureMenuPanel.SetActive(!furnitureMenuPanel.activeSelf); // Toggle menu visibility
+            }
+            ```
+
+**Part 3: Testing**
+
+1.  Run the scene.
+2.  Press 'B' to open/close the furniture menu.
+3.  Click on a furniture button in the UI.
+4.  Move your mouse to position the ghosted furniture item.
+5.  Press 'R' to rotate it (optional).
+6.  Left-click to place the item.
+7.  Right-click to cancel placement.

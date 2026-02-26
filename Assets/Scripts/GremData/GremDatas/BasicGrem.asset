@@ -16,7 +16,17 @@ MonoBehaviour:
   visualSprite: {fileID: 21300000, guid: 921611db3b814b0459c3ddf5add71a38, type: 3}
   sleepSprite: {fileID: 0}
   moveSpeed: 1
+  dragPullForce: 50
   minBounds: {x: -2, y: -1.1}
   maxBounds: {x: 1.8, y: 1.1}
   hungerDepletionRate: 0.05
   hungerThreshold: 0.3
+  energyDepletionRate: 0.02
+  energyThreshold: 0.2
+  currencyProductionValue: 1
+  currencyProductionRate: 5
+  squashAmount: 0.1
+  squashSpeed: 10
+  sleepSquashAmount: 0.2
+  sleepSquashSpeed: 1
+  dragFollowSpeed: 8

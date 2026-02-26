@@ -1,0 +1,13 @@
+To enable the Grem to produce currency:
+
+1.  **Select Grem Prefab(s):**
+    *   In the Unity Editor, navigate to your `Assets/Prefabs` folder (or wherever your Grem prefabs are located).
+    *   Select all Grem prefabs that should produce currency (e.g., "BasicGrem.prefab").
+
+2.  **Add `GremCurrencyProducer` Component:**
+    *   In the Inspector window, click the "Add Component" button.
+    *   Search for "Grem Currency Producer" and select the `GremCurrencyProducer` script to add it to your Grem prefabs.
+
+Now, when these Grems are active in the scene, they will produce currency according to their `GremData` settings (value, rate, and reductions based on hunger/energy).
+
+Remember to ensure your `CurrencyManager` is correctly set up in the scene as per `Assets/TO DO/CurrencyManager_implement.txt`.

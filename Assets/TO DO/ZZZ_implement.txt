@@ -1,0 +1,32 @@
+To implement the ZZZ visual effect for sleeping Grems, follow these steps:
+
+1.  **Create a ZZZ Prefab:**
+    *   In Unity, create a new 3D TextMeshPro object (GameObject -> 3D Object -> Text - TextMeshPro). You may need to import TMP Essentials.
+    *   Set the text to "Zzz".
+    *   Adjust font size, color, and material as desired.
+    *   Position it slightly above where the Grem's head would be (e.g., Y position of 0.5 to 1 unit above the Grem's origin).
+    *   Consider making it face the camera: You can add a simple script to make it billboarded (always face the camera). A simple `transform.LookAt(Camera.main.transform.position, Vector3.up);` in `Update()` would work.
+    *   Save this GameObject as a prefab in your `Assets/Prefabs` folder (e.g., `Assets/Prefabs/Grem_Zzz.prefab`).
+
+2.  **Assign the Prefab in `TaskSleep.cs`:**
+    *   Open `Assets/Scripts/BTs WIP/BasicGrem/TaskSleep.cs`.
+    *   There is a new `[SerializeField] GameObject zzzPrefab;` field. Drag your newly created `Grem_Zzz.prefab` into this slot in the Inspector of the `TaskSleep` component (you'll need to select a Grem in the scene to see its GremBT component, and then the TaskSleep node within its behavior tree structure if exposed, or just assign it directly in the asset if it's not runtime created). If TaskSleep is part of a ScriptableObject, you'll assign it there.
+
+    *(Note: Since TaskSleep is a Node within the Behavior Tree and likely instantiated at runtime, you'll probably need to expose this field or find a way to pass the prefab reference to it. A simpler approach might be to access it from the GremBT itself, but for this instruction, assume it's exposed or accessible directly by the TaskSleep instance.)*
+
+    *(Correction on previous note: Behavior Tree nodes in this project are plain C# classes, not MonoBehaviours. Therefore, the `zzzPrefab` cannot be a `[SerializeField]` directly on `TaskSleep`. We will need to pass the prefab reference through the `GremBT` instance to the `TaskSleep` node.)*
+
+    *(Further Correction: Let's adjust the implementation to instantiate it directly from the `GremBT` and pass it to `TaskSleep` or have `TaskSleep` access a public `zzzPrefab` from `GremBT`.)*
+
+    **Revised assignment strategy for ZZZ Prefab:**
+
+    *   Open `Assets/Scripts/BTs WIP/BasicGrem/GremBT.cs`.
+    *   Add a public `GameObject zzzPrefab;` field to `GremBT`.
+    *   Drag your `Grem_Zzz.prefab` into this slot in the Inspector of your Grem prefabs.
+    *   `TaskSleep.cs` will then access `agent.zzzPrefab` to instantiate.
+
+3.  **Run the Scene:**
+    *   Play the scene. When a Grem falls asleep, you should see the ZZZ effect appear above it.
+    *   When it wakes up, the ZZZ effect should disappear.
+
+Remember to ensure the ZZZ prefab has its sorting layer or render order set correctly if it appears behind other objects.

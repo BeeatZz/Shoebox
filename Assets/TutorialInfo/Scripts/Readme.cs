@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using UnityEngine;
 
+// this is for the readme thingy in unity
 public class Readme : ScriptableObject
 {
     public Texture2D icon;

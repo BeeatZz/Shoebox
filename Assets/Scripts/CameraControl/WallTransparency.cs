@@ -1,7 +1,6 @@
 using UnityEngine;
 
 
-
 public class WallTransparency : MonoBehaviour
 
 {
@@ -20,8 +19,6 @@ public class WallTransparency : MonoBehaviour
 
 
 
-    // Using PropertyToID is faster than using strings every frame in Update
-
     private static readonly int DissolveProp = Shader.PropertyToID("_Dissolve");
 
 
@@ -34,13 +31,9 @@ public class WallTransparency : MonoBehaviour
 
 
 
-        // This line BOTH gets the material AND creates a unique instance for this object
-
         _materialInstance = meshRenderer.material;
 
 
-
-        // Initialize dissolve value
 
         if (_materialInstance.HasProperty(DissolveProp))
 
@@ -62,13 +55,9 @@ public class WallTransparency : MonoBehaviour
 
 
 
-        // Smoothly interpolate
-
         _currentDissolve = Mathf.MoveTowards(_currentDissolve, targetDissolve, Time.deltaTime * fadeSpeed);
 
 
-
-        // Update the shader
 
         _materialInstance.SetFloat(DissolveProp, _currentDissolve);
 
@@ -79,8 +68,6 @@ public class WallTransparency : MonoBehaviour
     void OnDestroy()
 
     {
-
-        // Clean up to prevent memory leaks
 
         if (_materialInstance != null)
 

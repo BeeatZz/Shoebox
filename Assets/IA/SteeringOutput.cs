@@ -1,6 +1,7 @@
 using MyEngine = UnityEngine;
 namespace IA26.Movement
 {
+    // dont worry about dis it for some moovment stuff
     public struct SteeringOutput
     {
         public MyEngine.Vector2 linear;
@@ -13,4 +14,3 @@ namespace IA26.Movement
     }
     
 }
-

@@ -1,0 +1,22 @@
+To ensure physics-based dragging works correctly for your Grems, you must perform the following manual setup in the Unity Editor:
+
+1.  **Select Grem Prefab(s):**
+    *   In the Unity Editor, navigate to your `Assets/Prefabs` folder (or wherever your Grem prefabs are located).
+    *   Select all Grem prefabs that should be draggable.
+
+2.  **Add `Rigidbody` Component:**
+    *   In the Inspector window for your Grem prefab, click the "Add Component" button.
+    *   Search for "Rigidbody" and select it to add a 3D Rigidbody component to your Grem.
+
+3.  **Configure Rigidbody (Crucial):**
+    *   With the Rigidbody component added, inspect its settings:
+        *   **`Use Gravity`**: Ensure this is **enabled** (checked). The dragging script will temporarily disable it when dragging starts.
+        *   **`Is Kinematic`**: Ensure this is **disabled** (unchecked). The dragging script will temporarily set it to false when dragging starts.
+        *   **`Freeze Rotation`**: Expand the "Constraints" section and ensure **all three (X, Y, Z)** rotation axes are **checked** (frozen). This prevents the Grem from rotating uncontrollably when force is applied.
+        *   **`Collision Detection`**: Set to `Continuous` or `ContinuousDynamic` for better collision detection, especially if the Grem moves fast.
+
+4.  **Set `Drag Pull Force` in `GremData`:**
+    *   Select your `GremData` ScriptableObject asset (e.g., `Assets/Scripts/GremData/GremDatas/BasicGrem.asset`).
+    *   In the Inspector, locate the "Movement" section and adjust the `Drag Pull Force` value. A good starting point might be `50` to `100`, but you can tweak this to make the drag feel more or less responsive.
+
+After performing these steps, run the scene and test dragging. The Grem should now physically collide with walls instead of passing through them.

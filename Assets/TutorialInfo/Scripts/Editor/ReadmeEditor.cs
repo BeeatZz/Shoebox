@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
+// this script helps show the readme in unity editor
 [CustomEditor(typeof(Readme))]
 [InitializeOnLoad]
 public class ReadmeEditor : Editor
@@ -120,7 +121,7 @@ public class ReadmeEditor : Editor
         GUILayout.EndHorizontal();
     }
 
-    public override void OnInspectorGUI()
+    public override void OnInspectorGUI() // this makes the custom inspector for the readme
     {
         var readme = (Readme)target;
         Init();
